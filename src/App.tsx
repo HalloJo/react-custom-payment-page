@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import "./App.scss";
 import Payment from "./pages/Payment/Payment";
 import Checkout from "./pages/Checkout/Checkout";
 import Completion from "./pages/Completion/Completion";
