@@ -3,6 +3,17 @@
   min-height: 100vh;
   width: 100%;
 
+  @media only screen and (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__wrapper {
+    @media only screen and (min-width: 768px) {
+      width: 50%;
+    }
+  }
+
   &__logo {
     margin: 0 0 2rem 0;
   }
@@ -64,6 +75,14 @@
   &__radio {
     display: flex;
     gap: 0.5rem;
+
+    @media only screen and (min-width: 768px) {
+      & input[type="radio"] {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
   }
 
   &__popular {
@@ -76,6 +95,13 @@
 
   &__issuers {
     margin: 0.5rem 0 0 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    label {
+      margin: 0 0 0.25rem 0;
+    }
 
     & input[type="select"] {
       width: 100%;
