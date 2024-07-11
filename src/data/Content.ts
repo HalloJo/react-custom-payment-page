@@ -43,3 +43,9 @@ export const PaymentPageContent: PaymentProps = {
     total: "Totaal",
   },
 };
+
+export const CheckoutPageContent = {
+  title: "Betaalmethoden",
+  subTitle: "Kies een betaalmethode die het beste bij u past.",
+  callToAction: "Betalen",
+};
