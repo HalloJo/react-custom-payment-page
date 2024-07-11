@@ -3,18 +3,21 @@ import { Link } from "react-router-dom";
 import "./Checkout.scss";
 import { CheckoutPageContent } from "../../data/Content";
 import { PaymentMethod, Location } from "../../types/types";
+import expertsLogo from "../../assets/logo.svg";
+import shield from "../../assets/shield.svg";
 
 const Checkout = () => {
   const [location, setLocation] = useState<Location | null>(null);
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([]);
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
   const [showContinueButton, setShowContinueButton] = useState(false);
+  const [selectedIssuer, setSelectedIssuer] = useState<string>("");
 
   useEffect(() => {
     const fetchLocation = async () => {
       try {
         const response = await fetch(
-          `https://api.ipregistry.co/?key=${
+          `${import.meta.env.VITE_IPREGISTRY_BASE_URL}${
             import.meta.env.VITE_IPREGISTRY_API_KEY
           }`
         );
@@ -51,10 +54,7 @@ const Checkout = () => {
     location: Location
   ): PaymentMethod[] => {
     if (!location) return [];
-    console.log(
-      "Filtering payment methods for country:",
-      location.country.code.toLowerCase()
-    );
+
     return paymentMethods.filter((method) =>
       method.countries.includes(location.country.code.toLowerCase())
     );
@@ -75,6 +75,7 @@ const Checkout = () => {
 
   return (
     <div className="checkout">
+      <img src={expertsLogo} alt="Experts logo" className="checkout__logo" />
       <h1 className="checkout__title">{CheckoutPageContent.title}</h1>
       <p className="checkout__subTitle">{CheckoutPageContent.subTitle}</p>
       <ul className="checkout__list">
@@ -85,22 +86,44 @@ const Checkout = () => {
               selectedMethod === method.id ? "selected" : ""
             }`}
           >
-            <div className="checkout__method_image">
-              <img src={method.image} alt={method.description} />
-              <label htmlFor={method.id}>{method.description}</label>
+            <div className="checkout__method_item">
+              <div className="checkout__method_image">
+                <img src={method.image} alt={method.description} />
+                <label htmlFor={method.id}>{method.description}</label>
+              </div>
+              <div className="checkout__radio">
+                {method.popular && (
+                  <span className="checkout__popular">
+                    {CheckoutPageContent.popular}
+                  </span>
+                )}
+                <input
+                  type="radio"
+                  id={method.id}
+                  name="paymentMethod"
+                  checked={selectedMethod === method.id}
+                  onChange={() => handleMethodSelection(method.id)}
+                />
+              </div>
             </div>
-            <div className="checkout__radio">
-              {method.popular && (
-                <span className="checkout__popular">Populair!</span>
+            {selectedMethod === method.id &&
+              method.issuers &&
+              method.issuers.length > 0 && (
+                <div className="checkout__issuers">
+                  <label htmlFor="issuer">Select Bank:</label>
+                  <select
+                    id="issuer"
+                    onChange={(e) => setSelectedIssuer(e.target.value)}
+                  >
+                    <option value="">Select an issuer</option>
+                    {method.issuers.map((issuer) => (
+                      <option key={issuer.id} value={issuer.name}>
+                        {issuer.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               )}
-              <input
-                type="radio"
-                id={method.id}
-                name="paymentMethod"
-                checked={selectedMethod === method.id}
-                onChange={() => handleMethodSelection(method.id)}
-              />
-            </div>
           </div>
         ))}
         {showContinueButton && selectedPaymentMethod && (
@@ -113,6 +136,14 @@ const Checkout = () => {
           </Link>
         )}
       </ul>
+      <div className="checkout__message">
+        <img
+          src={shield}
+          alt="Experts logo"
+          className="checkout__message_icon"
+        />
+        <p>{CheckoutPageContent.message}</p>
+      </div>
     </div>
   );
 };

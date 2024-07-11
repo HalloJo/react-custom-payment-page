@@ -10,5 +10,12 @@ export type PaymentMethod = {
   popular?: boolean;
   countries: string[];
   image: string;
-  issuers: any;
+  issuers: Issuer[];
+};
+
+export type Issuer = {
+  id: string;
+  name: string;
+  resource: string;
+  image: string;
 };

@@ -22,7 +22,7 @@ export const PaymentPageContent: PaymentProps = {
   warning: "Vermijd extra kosten. Betaal uw openstaande factuur direct!",
   title: "Te betalen bedrag",
   subTitle: "Hieronder ziet u de factuurgegevens",
-  callToAction: "Nu betalen",
+  callToAction: "Betaal nu",
   table: {
     receipt: "Factuurnummer:",
     receiptNumber: "#9c6111",
@@ -30,12 +30,12 @@ export const PaymentPageContent: PaymentProps = {
     paymentSpecifications: [
       {
         title: "Opzegbrief Basic Fit",
-        amount: 30.0,
+        amount: 30,
         description: "Standaard prijs voor het opstellen van een opzegbrief",
       },
       {
         title: "Betalingsherinnering",
-        amount: 15.0,
+        amount: 15,
         description:
           "Aanmaning voor het niet op tijd betalen van de opzegbrief",
       },
@@ -48,4 +48,7 @@ export const CheckoutPageContent = {
   title: "Betaalmethoden",
   subTitle: "Kies een betaalmethode die het beste bij u past.",
   callToAction: "Betalen",
+  popular: "Populair",
+  message:
+    "Wij houden ons volledig aan de databeveiligingsnormen van de betalingskaartindustrie.",
 };
