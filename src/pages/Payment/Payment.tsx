@@ -40,9 +40,7 @@ const Payment = () => {
                     {item.description}
                   </p>
                 </div>
-                <p className="payment__table_listItemAmount">
-                  €{item.amount}.00
-                </p>
+                <p className="payment__table_listItemAmount">€{item.amount}</p>
               </li>
             );
           })}

@@ -52,3 +52,10 @@ export const CheckoutPageContent = {
   message:
     "Wij houden ons volledig aan de databeveiligingsnormen van de betalingskaartindustrie.",
 };
+
+export const CompletionPageContent = {
+  title: "Bedankt voor het betalen!",
+  subTitle:
+    "Ik vond dit een interessant assessment. Veel nieuwe dingen geleerd. Bedankt daarvoor!",
+  callToAction: "Terug naar het begin",
+};
