@@ -7,6 +7,7 @@ import expertsLogo from "../../assets/logo.svg";
 import shield from "../../assets/shield.svg";
 import LanguageSelector from "../../components/LanguageSelector/LanguageSelector";
 import CustomRadioButton from "../../components/CustomRadioButton/CustomRadioButton";
+import { getPaymentMethodBasedOnLocation } from "../../utils/get-payment-method-on-location";
 
 const Checkout = () => {
   const [location, setLocation] = useState<Location | null>(null);
@@ -54,18 +55,8 @@ const Checkout = () => {
     fetchPaymentMethods();
   }, []);
 
-  const getPaymentMethodBasedOnLocation = (
-    location: Location
-  ): PaymentMethod[] => {
-    if (!location) return [];
-
-    return paymentMethods.filter((method) =>
-      method.countries.includes(location.country.code.toLowerCase())
-    );
-  };
-
   const availablePaymentMethods = location
-    ? getPaymentMethodBasedOnLocation(location)
+    ? getPaymentMethodBasedOnLocation(location, paymentMethods)
     : [];
 
   const handleMethodSelection = (methodId: string) => {
