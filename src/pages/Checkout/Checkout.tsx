@@ -12,7 +12,9 @@ const Checkout = () => {
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([]);
   const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
   const [showContinueButton, setShowContinueButton] = useState(false);
-  const [selectedIssuer, setSelectedIssuer] = useState<string>("");
+  const [selectedIssuer, setSelectedIssuer] =
+    useState<string>("Selecteer bank:");
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -74,6 +76,15 @@ const Checkout = () => {
     (method) => method.id === selectedMethod
   );
 
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleSelectedIssuer = (issuer: string) => {
+    setSelectedIssuer(issuer);
+    toggleDropdown();
+  };
+
   return (
     <div className="checkout">
       <div className="checkout__wrapper">
@@ -119,18 +130,23 @@ const Checkout = () => {
                 method.issuers &&
                 method.issuers.length > 0 && (
                   <div className="checkout__issuers">
-                    <label htmlFor="issuer">Select Bank:</label>
-                    <select
-                      id="issuer"
-                      onChange={(e) => setSelectedIssuer(e.target.value)}
-                    >
-                      <option value="">Select an issuer</option>
-                      {method.issuers.map((issuer) => (
-                        <option key={issuer.id} value={issuer.name}>
-                          {issuer.name}
-                        </option>
-                      ))}
-                    </select>
+                    <div className="checkout__issuers_start">
+                      <p onClick={toggleDropdown}>{selectedIssuer}</p>
+                    </div>
+                    {isOpen && (
+                      <ul>
+                        {method.issuers.map((issuer) => (
+                          <li
+                            key={issuer.id}
+                            value={issuer.name}
+                            onClick={() => handleSelectedIssuer(issuer.name)}
+                          >
+                            <img src={issuer.image} alt={issuer.name} />
+                            <p>{issuer.name}</p>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
                   </div>
                 )}
             </div>
