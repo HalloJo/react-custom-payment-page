@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Checkout.scss";
 import { CheckoutPageContent } from "../../data/Content";
@@ -8,15 +8,22 @@ import shield from "../../assets/shield.svg";
 import LanguageSelector from "../../components/LanguageSelector/LanguageSelector";
 import CustomRadioButton from "../../components/CustomRadioButton/CustomRadioButton";
 import { getPaymentMethodBasedOnLocation } from "../../utils/get-payment-method-on-location";
+import { usePaymentMethods } from "../../hooks/usePaymentMethods";
 
 const Checkout = () => {
   const [location, setLocation] = useState<Location | null>(null);
   const [paymentMethods, setPaymentMethods] = useState<PaymentMethod[]>([]);
-  const [selectedMethod, setSelectedMethod] = useState<string | null>(null);
-  const [showContinueButton, setShowContinueButton] = useState(false);
-  const [selectedIssuer, setSelectedIssuer] =
-    useState<string>("Selecteer bank:");
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const {
+    selectedMethod,
+    showContinueButton,
+    selectedIssuer,
+    isOpen,
+    handleMethodSelection,
+    handleSelectedIssuer,
+    toggleDropdown,
+    selectedPaymentMethod,
+  } = usePaymentMethods(paymentMethods);
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -58,31 +65,6 @@ const Checkout = () => {
   const availablePaymentMethods = location
     ? getPaymentMethodBasedOnLocation(location, paymentMethods)
     : [];
-
-  const handleMethodSelection = (methodId: string) => {
-    setSelectedMethod(methodId);
-    if (methodId !== "ideal") {
-      setShowContinueButton(true);
-    } else {
-      setShowContinueButton(false);
-    }
-  };
-
-  const handleSelectedIssuer = (issuer: string) => {
-    setSelectedIssuer(issuer);
-    toggleDropdown();
-    if (selectedMethod === "ideal") {
-      setShowContinueButton(true);
-    }
-  };
-
-  const selectedPaymentMethod = paymentMethods.find(
-    (method) => method.id === selectedMethod
-  );
-
-  const toggleDropdown = () => {
-    setIsOpen(!isOpen);
-  };
 
   return (
     <div className="checkout">
