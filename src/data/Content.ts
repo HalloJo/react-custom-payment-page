@@ -1,22 +1,9 @@
-export type PaymentProps = {
-  warning: string;
-  title: string;
-  subTitle: string;
-  callToAction: string;
-  table: {
-    receipt: string;
-    receiptNumber: string;
-    receiptCallToAction: string;
-    paymentSpecifications: PaymentSpecification[];
-    total: string;
-  };
-};
-
-export type PaymentSpecification = {
-  title: string;
-  amount: number;
-  description: string;
-};
+import {
+  CheckoutPageProps,
+  CompletionPageProps,
+  Language,
+  PaymentProps,
+} from "../types/types";
 
 export const PaymentPageContent: PaymentProps = {
   warning: "Vermijd extra kosten. Betaal uw openstaande factuur direct!",
@@ -44,7 +31,7 @@ export const PaymentPageContent: PaymentProps = {
   },
 };
 
-export const CheckoutPageContent = {
+export const CheckoutPageContent: CheckoutPageProps = {
   title: "Betaalmethoden",
   subTitle: "Kies een betaalmethode die het beste bij u past.",
   callToAction: "Betalen",
@@ -53,9 +40,15 @@ export const CheckoutPageContent = {
     "Wij houden ons volledig aan de databeveiligingsnormen van de betalingskaartindustrie.",
 };
 
-export const CompletionPageContent = {
+export const CompletionPageContent: CompletionPageProps = {
   title: "Bedankt voor het betalen!",
   subTitle:
     "Ik vond dit een interessant assessment. Veel nieuwe dingen geleerd. Bedankt daarvoor!",
   callToAction: "Terug naar het begin",
 };
+
+export const languages: Language[] = [
+  { emoji: "🇺🇸", title: "English" },
+  { emoji: "🇳🇱", title: "Nederlands" },
+  { emoji: "🇫🇷", title: "French" },
+];

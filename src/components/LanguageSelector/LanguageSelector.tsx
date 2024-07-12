@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Language } from "../../types/types";
 import "./LanguageSelector.scss";
 import chevron from "../../assets/chevron-down.svg";
+import { languages } from "../../data/Content";
 
 const LanguageSelector = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -9,12 +10,6 @@ const LanguageSelector = () => {
     emoji: "🇳🇱",
     title: "Nederlands",
   });
-
-  const languages = [
-    { emoji: "🇺🇸", title: "English" },
-    { emoji: "🇳🇱", title: "Nederlands" },
-    { emoji: "🇫🇷", title: "French" },
-  ];
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
