@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import "./Payment.scss";
-import { PaymentPageContent, PaymentSpecification } from "../../data/Content";
+import { PaymentPageContent } from "../../data/Content";
 import downloadIcon from "../../assets/download.svg";
+import { PaymentSpecification } from "../../types/types";
 
 const Payment = () => {
   const calculateTotal = (paymentSpecifications: PaymentSpecification[]) => {

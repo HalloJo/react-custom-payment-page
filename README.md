@@ -22,10 +22,6 @@ You may also see any lint errors in the console.
 
 Builds the app for production.
 
-### `npm run preview`
-
-Preview the application.
-
 ---
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.

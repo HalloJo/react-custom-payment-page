@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Language } from "../../types/types";
 import "./LanguageSelector.scss";
 import chevron from "../../assets/chevron-down.svg";

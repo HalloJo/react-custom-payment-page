@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { PaymentMethod } from "../types/types";
 
 export const usePaymentMethods = (paymentMethods: PaymentMethod[]) => {
