@@ -82,27 +82,6 @@
     }
   }
 
-  &__radio {
-    display: flex;
-    gap: 0.5rem;
-
-    @media only screen and (min-width: 768px) {
-      & input[type="radio"] {
-        &:hover {
-          cursor: pointer;
-        }
-      }
-    }
-  }
-
-  &__popular {
-    background-color: #78b9802e;
-    color: #78b980;
-    font-size: 0.75rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 1rem;
-  }
-
   &__issuers {
     margin: 0.5rem 0 0 0;
     width: 100%;

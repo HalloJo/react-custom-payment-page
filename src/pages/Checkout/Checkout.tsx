@@ -6,6 +6,7 @@ import { PaymentMethod, Location } from "../../types/types";
 import expertsLogo from "../../assets/logo.svg";
 import shield from "../../assets/shield.svg";
 import LanguageSelector from "../../components/LanguageSelector/LanguageSelector";
+import CustomRadioButton from "../../components/CustomRadioButton/CustomRadioButton";
 
 const Checkout = () => {
   const [location, setLocation] = useState<Location | null>(null);
@@ -118,20 +119,11 @@ const Checkout = () => {
                   <img src={method.image} alt={method.description} />
                   <label htmlFor={method.id}>{method.description}</label>
                 </div>
-                <div className="checkout__radio">
-                  {method.popular && (
-                    <span className="checkout__popular">
-                      {CheckoutPageContent.popular}
-                    </span>
-                  )}
-                  <input
-                    type="radio"
-                    id={method.id}
-                    name="paymentMethod"
-                    checked={selectedMethod === method.id}
-                    onChange={() => handleMethodSelection(method.id)}
-                  />
-                </div>
+                <CustomRadioButton
+                  method={method}
+                  selectedMethod={selectedMethod}
+                  handleMethodSelection={handleMethodSelection}
+                />
               </div>
               {selectedMethod === method.id &&
                 method.issuers &&
