@@ -69,7 +69,19 @@ const Checkout = () => {
 
   const handleMethodSelection = (methodId: string) => {
     setSelectedMethod(methodId);
-    setShowContinueButton(true);
+    if (methodId !== "ideal") {
+      setShowContinueButton(true);
+    } else {
+      setShowContinueButton(false);
+    }
+  };
+
+  const handleSelectedIssuer = (issuer: string) => {
+    setSelectedIssuer(issuer);
+    toggleDropdown();
+    if (selectedMethod === "ideal") {
+      setShowContinueButton(true);
+    }
   };
 
   const selectedPaymentMethod = paymentMethods.find(
@@ -78,11 +90,6 @@ const Checkout = () => {
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
-  };
-
-  const handleSelectedIssuer = (issuer: string) => {
-    setSelectedIssuer(issuer);
-    toggleDropdown();
   };
 
   return (
