@@ -5,6 +5,7 @@ import { CheckoutPageContent } from "../../data/Content";
 import { PaymentMethod, Location } from "../../types/types";
 import expertsLogo from "../../assets/logo.svg";
 import shield from "../../assets/shield.svg";
+import LanguageSelector from "../../components/LanguageSelector/LanguageSelector";
 
 const Checkout = () => {
   const [location, setLocation] = useState<Location | null>(null);
@@ -76,7 +77,14 @@ const Checkout = () => {
   return (
     <div className="checkout">
       <div className="checkout__wrapper">
-        <img src={expertsLogo} alt="Experts logo" className="checkout__logo" />
+        <div className="checkout__header">
+          <img
+            src={expertsLogo}
+            alt="Experts logo"
+            className="checkout__logo"
+          />
+          <LanguageSelector />
+        </div>
         <h1 className="checkout__title">{CheckoutPageContent.title}</h1>
         <p className="checkout__subTitle">{CheckoutPageContent.subTitle}</p>
         <ul className="checkout__list">

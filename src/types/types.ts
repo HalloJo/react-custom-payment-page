@@ -19,3 +19,8 @@ export type Issuer = {
   resource: string;
   image: string;
 };
+
+export type Language = {
+  emoji: string;
+  title: string;
+};
