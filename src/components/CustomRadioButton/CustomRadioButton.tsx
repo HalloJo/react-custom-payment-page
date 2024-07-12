@@ -1,11 +1,16 @@
 import "./CustomRadioButton.scss";
 import { CheckoutPageContent } from "../../data/Content";
+import { Method } from "../../types/types";
 
 const CustomRadioButton = ({
   method,
   handleMethodSelection,
   selectedMethod,
-}: any) => {
+}: {
+  method: Method;
+  handleMethodSelection: (id: string) => void;
+  selectedMethod: string | null;
+}) => {
   return (
     <div className="radio">
       {method.popular && (

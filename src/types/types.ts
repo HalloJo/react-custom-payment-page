@@ -58,3 +58,9 @@ export type CompletionPageProps = {
   subTitle: string;
   callToAction: string;
 };
+
+export type Method = {
+  id: string;
+  popular?: boolean;
+  name?: string;
+};
