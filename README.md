@@ -1,4 +1,32 @@
-# React + TypeScript + Vite
+# Getting started with React + TypeScript + Vite
+
+This project was bootstrapped with Vite.
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm i`
+
+and then run:
+
+### `npm run dev`
+
+This runs the app in the development mode.\
+Open [http://localhost:5173/](http://localhost:5173/) to view it in your browser.
+
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
+
+### `npm run build`
+
+Builds the app for production.
+
+### `npm run preview`
+
+Preview the application.
+
+---
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -17,12 +45,12 @@ If you are developing a production application, we recommend updating the config
 export default {
   // other rules...
   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
+    ecmaVersion: "latest",
+    sourceType: "module",
+    project: ["./tsconfig.json", "./tsconfig.node.json"],
     tsconfigRootDir: __dirname,
   },
-}
+};
 ```
 
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
